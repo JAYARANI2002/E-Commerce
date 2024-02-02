@@ -1,0 +1,35 @@
+public class CustomerComplexObjectToString extends Customer {
+    private Order order;
+    //standard setters and getters
+    
+    @Override
+    public String toString() {
+        return "Customer [order=" + order + ", getFirstName()=" + getFirstName()
+          + ", getLastName()=" + getLastName() + "]";
+    }      
+}
+public class Order {
+    
+    private String orderId;
+    private String desc;
+    private long value;
+    private String status;
+ 
+    @Override
+    public String toString() {
+        return "Order [orderId=" + orderId + ", desc=" + desc + ", value=" + value + "]";
+    }
+}
+@Test
+public void givenComplex_whenToString_thenCustomerDetails() {
+    CustomerComplexObjectToString customer = new CustomerComplexObjectToString();    
+    // .. set up customer as before
+    Order order = new Order();
+    order.setOrderId("A1111");
+    order.setDesc("Game");
+    order.setStatus("In-Shiping");
+    customer.setOrders(order);
+        
+    assertEquals("Customer [order=Order [orderId=A1111, desc=Game, value=0], " +
+      "getFirstName()=Rajesh, getLastName()=Bhojwani]", customer.toString());
+}
